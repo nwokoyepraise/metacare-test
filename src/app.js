@@ -1,10 +1,10 @@
 'use-strict'
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 const http = require('http');
 const app = express();
 const server = http.createServer(app);
-const portNumber = process.env.PORT || process.env.PORT_NUMBER;
+const portNumber = process.env.PORT || process.env.PORT_NUMBER || 3000;
 const home = require('./routes/home');
 const movieList = require('./routes/movieList');
 
