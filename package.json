@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/nwokoyepraise/metahealth-test#readme",
   "dependencies": {
+    "axios": "^0.24.0",
     "dotenv": "^13.0.1",
     "express": "^4.17.2"
   }
