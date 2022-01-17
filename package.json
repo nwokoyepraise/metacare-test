@@ -1,0 +1,23 @@
+{
+  "name": "metamask-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nwokoyepraise/metahealth-test.git"
+  },
+  "author": "nwokoyepraise",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/nwokoyepraise/metahealth-test/issues"
+  },
+  "homepage": "https://github.com/nwokoyepraise/metahealth-test#readme",
+  "dependencies": {
+    "dotenv": "^13.0.1",
+    "express": "^4.17.2"
+  }
+}
