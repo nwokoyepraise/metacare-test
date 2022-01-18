@@ -1,5 +1,5 @@
 {
-  "name": "metamask-test",
+  "name": "metacare-test",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -10,18 +10,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nwokoyepraise/metahealth-test.git"
+    "url": "git+https://github.com/nwokoyepraise/metacare-test.git"
   },
   "author": "nwokoyepraise",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/nwokoyepraise/metahealth-test/issues"
+    "url": "https://github.com/nwokoyepraise/metacare-test/issues"
   },
-  "homepage": "https://github.com/nwokoyepraise/metahealth-test#readme",
+  "homepage": "https://github.com/nwokoyepraise/metacare-test#readme",
   "dependencies": {
     "axios": "^0.24.0",
+    "crypto-random-string": "^3.2.0",
     "dotenv": "^13.0.1",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "pg": "^8.7.1"
   },
   "engines": {
     "node": "14.15.0"

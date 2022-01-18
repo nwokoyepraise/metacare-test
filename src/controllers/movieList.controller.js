@@ -23,5 +23,6 @@ module.exports = async function () {
         return { count: data.count, movies };
     } catch (error) {
         console.error(error);
+        return { status: false, status_code: 500, message: 'Internal Server Error' }
     }
 }
