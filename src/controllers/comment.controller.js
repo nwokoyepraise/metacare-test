@@ -24,3 +24,22 @@ module.exports.addComment = async function (episode_id, comment) {
         return { status: false, status_code: 500, message: 'Internal Server Error' }
     }
 }
+
+module.exports.getComments = async function (episode_id) {
+    try {
+        //retrieve comments from DB
+        let data = await commentModel.getComments(episode_id);
+        let comment_count = await commentModel.commentCount(episode_id);
+
+        //check and return if DB operation is not successful
+        if (!data.status) {
+            return { status: false, status_code: 500, message: 'unable to add comment at this time, please try again later' }
+        }
+
+        //return details if operation is successful
+        return { status: true, data: {comment_count: comment_count.comment_count, comments: data.comments} };
+    } catch (error) {
+        console.error(error);
+        return { status: false, status_code: 500, message: 'Internal Server Error' }
+    }
+}
