@@ -18,11 +18,34 @@ module.exports.addComment = async function (episode_id, comment, comment_id) {
             throw error;
         }
         finally {
-            client.release();
+            //release client
+            try { client.release(); } catch (error) { console.error(error) }
             return { status: true, comment_count: comment_count, timestamp: timestamp }
         }
     })().catch(error => {
         console.error(error.stack);
         return { status: false }
     });
+}
+
+module.exports.commentCount = async function (episode_id) {
+    try {
+        const client = await pool.connect();
+        let comment_count = (await client.query('SELECT comment_count FROM movies WHERE episode_id = $1', [episode_id])).rows[0].comment_count;
+        return { status: true, comment_counts: comment_count }
+    } catch (error) {
+        console.error(error.stack);
+        return { status: false }
+    }
+}
+
+module.exports.commentCounts = async function () {
+    try {
+        const client = await pool.connect();
+        let comment_counts = (await pool.query('SELECT episode_id, comment_count FROM movies ')).rows;
+        return { status: true, comment_counts: comment_counts }
+    } catch (error) {
+        console.error(error.stack);
+        return { status: false }
+    }
 }
