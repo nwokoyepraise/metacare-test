@@ -63,7 +63,7 @@ module.exports.getComments = async function (episode_id) {
     const client = await pool.connect();
     try {
 
-        comments = (await client.query('SELECT comment_id, comment, timestamp FROM movie_comments WHERE episode_id = $1', [episode_id])).rows;
+        comments = (await client.query('SELECT comment_id, comment, user_ip, timestamp FROM movie_comments WHERE episode_id = $1 ORDER BY timestamp DESC', [episode_id])).rows;
 
     } catch (error) {
         console.error(error.stack);
