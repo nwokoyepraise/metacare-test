@@ -1,7 +1,7 @@
 const commentModel = require('../models/comment.model');
 const cryptGen = require('../utils/cryptGen');
 
-module.exports.addComment = async function (episode_id, comment) {
+module.exports.addComment = async function (episode_id, comment, user_ip) {
     try {
         if (comment.length > 500) {
             return { status: false, status_code: 400, message: 'comment length cannot exceed 500' }
@@ -10,7 +10,7 @@ module.exports.addComment = async function (episode_id, comment) {
         let comment_id = cryptGen.gen(5);
 
         //add comment to DB
-        let data = await commentModel.addComment(episode_id, comment, comment_id);
+        let data = await commentModel.addComment(episode_id, comment, comment_id, user_ip);
 
         //check and return if DB operation is not successful
         if (!data.status) {

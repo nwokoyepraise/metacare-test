@@ -6,9 +6,10 @@ router.post('/add', async function (req, res, next) {
     try {
         let body = req.body,
             comment = body.comment,
+            user_ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || null,
             episode_id = body.episode_id;
 
-        let data = await commentController.addComment(episode_id, comment);
+        let data = await commentController.addComment(episode_id, comment, user_ip);
         res.locals.data = data;
 
         //revert response to user

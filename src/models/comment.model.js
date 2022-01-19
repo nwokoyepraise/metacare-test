@@ -1,13 +1,13 @@
 const pool = require('../config/postgres.config');
 
-module.exports.addComment = async function (episode_id, comment, comment_id) {
+module.exports.addComment = async function (episode_id, comment, comment_id, user_ip) {
     return await (async () => {
         const client = await pool.connect();
         let comment_count, timestamp;
         try {
             //begin DB transaction
             await client.query('BEGIN');
-            timestamp = (await client.query(`INSERT INTO movie_comments (episode_id, comment, comment_id) VALUES ($1, $2, $3) RETURNING timestamp`, [episode_id, comment, comment_id])).rows[0].timestamp;
+            timestamp = (await client.query(`INSERT INTO movie_comments (episode_id, comment, comment_id, user_ip) VALUES ($1, $2, $3, $4) RETURNING timestamp`, [episode_id, comment, comment_id, user_ip])).rows[0].timestamp;
             comment_count = (await client.query('UPDATE movies SET comment_count = comment_count + 1 WHERE episode_id = $1 RETURNING comment_count', [episode_id])).rows[0].comment_count;
 
             //commit all changes
