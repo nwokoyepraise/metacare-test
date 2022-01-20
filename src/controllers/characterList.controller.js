@@ -8,8 +8,10 @@ module.exports = async function (query) {
         //fetch movie data
         let data = (await fetchHelper(url, params)).results;
 
+        //return if sort parameter is not set
         if (!query.sort) { return data }
 
+        //sort by either of the various params
         switch (query.sort) {
             case 'name':
                 data.sort((a, b) => (a.name).localeCompare(b.name));
@@ -24,11 +26,13 @@ module.exports = async function (query) {
                 break;
         }
 
+        //return if filter param is not set
         if (!query.filter) { return data }
 
+        //filter by gender
         data = data.filter(element => element.gender == query.filter);
         
-        //return sorted movie data
+        //return filtered movie data
         return data;
 
     } catch (error) {
