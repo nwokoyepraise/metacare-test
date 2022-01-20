@@ -4,12 +4,12 @@ module.exports = async function (query) {
     try {
         let url = `https://swapi.py4e.com/api/people/`;
         let params = {};
-
+        
         //fetch movie data
         let data = (await fetchHelper(url, params)).results;
 
         //return if sort parameter is not set
-        if (!query.sort) { return data }
+        if (!query.sort) { return {character_count: data.length, data}; }
 
         //sort by either of the various params
         switch (query.sort) {
@@ -27,13 +27,13 @@ module.exports = async function (query) {
         }
 
         //return if filter param is not set
-        if (!query.filter) { return data }
+        if (!query.filter) { return {character_count: data.length, data}; }
 
         //filter by gender
         data = data.filter(element => element.gender == query.filter);
         
         //return filtered movie data
-        return data;
+        return {character_count: data.length, data};
 
     } catch (error) {
         console.error(error);
